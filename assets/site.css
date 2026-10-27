@@ -344,3 +344,4 @@ h1,h2,h3,h4,.title,.lead{overflow-wrap:break-word;word-break:normal;hyphens:manu
 .split > *,.grid > *,.mrow > *{min-width:0}
 table.data th,table.data td{overflow-wrap:anywhere}
 @media (max-width:600px){h1{overflow-wrap:anywhere}}
+@media (max-width:1060px),(pointer:coarse){h2 > a:only-child,h3 > a:only-child{display:inline-flex;align-items:center;min-height:44px}}
