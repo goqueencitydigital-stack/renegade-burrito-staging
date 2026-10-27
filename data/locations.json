@@ -1,0 +1,458 @@
+{
+ "brand": {
+  "name": "Renegade Burrito",
+  "founded": 2017,
+  "cateringEmail": "renegadeburrito@outlook.com",
+  "cateringPhone": "(720) 469-9755",
+  "apps": {
+   "ios": "https://apps.apple.com/us/app/renegade-burrito/id1512879875",
+   "android": "https://play.google.com/store/apps/details?id=com.toasttab.renegadeburrito"
+  },
+  "social": {
+   "instagram": "https://www.instagram.com/renegadeburrito/",
+   "facebook": "https://www.facebook.com/RenegadeBurrito/"
+  },
+  "ga4MeasurementId": "",
+  "allowedOrderDomains": [
+   "toasttab.com",
+   "toast.site"
+  ]
+ },
+ "locations": [
+  {
+   "id": "arvada",
+   "name": "Arvada",
+   "fullName": "Renegade Burrito Arvada",
+   "page": "/arvada/",
+   "cateringPage": "/arvada-catering/",
+   "contactPage": "/contact-arvada/",
+   "careersPage": "/join-our-team-arvada/",
+   "address": "8770 Wadsworth Blvd, Unit B",
+   "city": "Arvada",
+   "state": "CO",
+   "zip": "80003",
+   "phone": "(303) 993-4171",
+   "lat": 39.8553,
+   "lng": -105.08031,
+   "googlePlaceId": "ChIJG07CMqKJa4cR3AX5OgrhGeE",
+   "format": "Dine-in, patio, pickup & delivery",
+   "dineIn": true,
+   "features": [
+    "Heated patio (seats up to 40 for private events)",
+    "Happy Hour 2\u20135 pm daily (Arvada only)",
+    "Margaritas and beer"
+   ],
+   "nearby": "Near Olde Town Arvada, Lake Arbor and Indian Tree Golf Club, at 88th and Wadsworth.",
+   "photo": "/img/locations/arvada.webp",
+   "hours": {
+    "sun": [
+     420,
+     1200
+    ],
+    "mon": [
+     420,
+     1200
+    ],
+    "tue": [
+     420,
+     1200
+    ],
+    "wed": [
+     420,
+     1200
+    ],
+    "thu": [
+     420,
+     1200
+    ],
+    "fri": [
+     420,
+     1260
+    ],
+    "sat": [
+     420,
+     1260
+    ]
+   },
+   "hoursSource": "Current live renegadeburrito.com structured data, Oct 26 2026",
+   "hoursVerified": false,
+   "hoursExceptions": [],
+   "orderingEnabled": true,
+   "deliveryEnabled": true,
+   "toast": {
+    "slug": "renegade-burrito-arvada-new-8770-wadsworth-blvd-unit-b",
+    "orderUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-arvada-new-8770-wadsworth-blvd-unit-b",
+    "pickupUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-arvada-new-8770-wadsworth-blvd-unit-b",
+    "deliveryUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-arvada-new-8770-wadsworth-blvd-unit-b",
+    "cateringUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-arvada-new-8770-wadsworth-blvd-unit-b",
+    "giftCardUrl": "https://order.toasttab.com/egiftcards/renegade-burrito-arvada-new-8770-wadsworth-blvd-unit-b",
+    "rewardsUrl": "https://www.toasttab.com/renegade-burrito-arvada-new-8770-wadsworth-blvd-unit-b/rewardsSignup",
+    "verified": "2026-10-26",
+    "testOrderPlaced": false
+   },
+   "cateringEmail": "renegadeburrito@outlook.com",
+   "cateringPhone": null
+  },
+  {
+   "id": "westminster",
+   "name": "Westminster",
+   "fullName": "Renegade Burrito North Westminster",
+   "page": "/westminster/",
+   "cateringPage": "/westminster-catering/",
+   "contactPage": "/contact-westminster/",
+   "careersPage": "/join-our-team-westminster/",
+   "address": "13648 Orchard Parkway",
+   "city": "Westminster",
+   "state": "CO",
+   "zip": "80023",
+   "phone": "(303) 287-7486",
+   "lat": 39.945667,
+   "lng": -104.992327,
+   "googlePlaceId": "ChIJW5CAPQR1bIcR8yrxnnCG2yE",
+   "format": "Dine-in, outdoor seating, pickup & delivery",
+   "dineIn": true,
+   "features": [
+    "Outdoor seating",
+    "The original Renegade Burrito (est. 2017 in Westminster)"
+   ],
+   "nearby": "By Orchard Town Center, Topgolf Thornton and Denver Premium Outlets, at 136th and I-25.",
+   "photo": "/img/locations/westminster.webp",
+   "hours": {
+    "sun": [
+     420,
+     1200
+    ],
+    "mon": [
+     420,
+     1200
+    ],
+    "tue": [
+     420,
+     1200
+    ],
+    "wed": [
+     420,
+     1200
+    ],
+    "thu": [
+     420,
+     1200
+    ],
+    "fri": [
+     420,
+     1200
+    ],
+    "sat": [
+     420,
+     1200
+    ]
+   },
+   "hoursSource": "Current live renegadeburrito.com structured data, Oct 26 2026",
+   "hoursVerified": false,
+   "hoursExceptions": [],
+   "orderingEnabled": true,
+   "deliveryEnabled": true,
+   "toast": {
+    "slug": "renegade-burrito-westminster-new-13648-orchard-parkway",
+    "orderUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-westminster-new-13648-orchard-parkway",
+    "pickupUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-westminster-new-13648-orchard-parkway",
+    "deliveryUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-westminster-new-13648-orchard-parkway",
+    "cateringUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-westminster-new-13648-orchard-parkway",
+    "giftCardUrl": "https://order.toasttab.com/egiftcards/renegade-burrito-westminster-new-13648-orchard-parkway",
+    "rewardsUrl": "https://www.toasttab.com/renegade-burrito-westminster-new-13648-orchard-parkway/rewardsSignup",
+    "verified": "2026-10-26",
+    "testOrderPlaced": false
+   },
+   "cateringEmail": null,
+   "cateringPhone": "(303) 287-7486"
+  },
+  {
+   "id": "thornton",
+   "name": "Thornton",
+   "fullName": "Renegade Burrito Thornton",
+   "page": "/thornton/",
+   "cateringPage": "/thornton-catering/",
+   "contactPage": "/contact-thornton/",
+   "careersPage": "/join-our-team-thornton/",
+   "address": "10005 Grant St, Unit E",
+   "city": "Thornton",
+   "state": "CO",
+   "zip": "80229",
+   "phone": "(303) 280-7052",
+   "lat": 39.880779,
+   "lng": -104.984133,
+   "googlePlaceId": "ChIJa8IdMfV2bIcR0aBr5I0EcKg",
+   "format": "Dine-in, outdoor seating, pickup & delivery",
+   "dineIn": true,
+   "features": [
+    "Outdoor seating"
+   ],
+   "nearby": "Near Northglenn Marketplace, Carpenter Park and Denver Premium Outlets.",
+   "photo": "/img/locations/thornton.webp",
+   "hours": {
+    "sun": [
+     420,
+     1200
+    ],
+    "mon": [
+     420,
+     1200
+    ],
+    "tue": [
+     420,
+     1200
+    ],
+    "wed": [
+     420,
+     1200
+    ],
+    "thu": [
+     420,
+     1200
+    ],
+    "fri": [
+     420,
+     1200
+    ],
+    "sat": [
+     420,
+     1200
+    ]
+   },
+   "hoursSource": "Current live renegadeburrito.com structured data, Oct 26 2026",
+   "hoursVerified": false,
+   "hoursExceptions": [],
+   "orderingEnabled": true,
+   "deliveryEnabled": true,
+   "toast": {
+    "slug": "renegade-burrito-thornton-new-10005-grant-st-unit-e",
+    "orderUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-thornton-new-10005-grant-st-unit-e",
+    "pickupUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-thornton-new-10005-grant-st-unit-e",
+    "deliveryUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-thornton-new-10005-grant-st-unit-e",
+    "cateringUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-thornton-new-10005-grant-st-unit-e",
+    "giftCardUrl": "https://order.toasttab.com/egiftcards/renegade-burrito-thornton-new-10005-grant-st-unit-e",
+    "rewardsUrl": "https://www.toasttab.com/renegade-burrito-thornton-new-10005-grant-st-unit-e/rewardsSignup",
+    "verified": "2026-10-26",
+    "testOrderPlaced": false
+   },
+   "cateringEmail": "renegadeburrito@outlook.com",
+   "cateringPhone": null
+  },
+  {
+   "id": "du",
+   "name": "Denver \u2013 DU",
+   "fullName": "Renegade Burrito Denver \u2013 DU",
+   "page": "/denver/",
+   "cateringPage": "/denver-catering/",
+   "contactPage": "/contact-denver-du/",
+   "careersPage": "/join-our-team-denver-du/",
+   "address": "2171 S Grape St",
+   "city": "Denver",
+   "state": "CO",
+   "zip": "80222",
+   "phone": "(720) 953-3788",
+   "lat": 39.677428,
+   "lng": -104.925608,
+   "googlePlaceId": "ChIJiXpxlPt9bIcRYafZXk6oitY",
+   "format": "Pickup & delivery only (ghost kitchen)",
+   "dineIn": false,
+   "features": [
+    "Pickup and delivery only \u2014 no dining room"
+   ],
+   "nearby": "Near the University of Denver, Washington Park and the Cherry Creek Shopping District.",
+   "photo": "/img/locations/du.webp",
+   "hours": {
+    "sun": [
+     420,
+     1200
+    ],
+    "mon": [
+     420,
+     1200
+    ],
+    "tue": [
+     420,
+     1200
+    ],
+    "wed": [
+     420,
+     1200
+    ],
+    "thu": [
+     420,
+     1200
+    ],
+    "fri": [
+     420,
+     1200
+    ],
+    "sat": [
+     420,
+     1200
+    ]
+   },
+   "hoursSource": "Current live renegadeburrito.com structured data, Oct 26 2026",
+   "hoursVerified": false,
+   "hoursExceptions": [],
+   "orderingEnabled": true,
+   "deliveryEnabled": true,
+   "toast": {
+    "slug": "renegade-ghost-kitchen-2171-s-grape-st",
+    "orderUrl": "https://renegadeburrito.toast.site/order/renegade-ghost-kitchen-2171-s-grape-st",
+    "pickupUrl": "https://renegadeburrito.toast.site/order/renegade-ghost-kitchen-2171-s-grape-st",
+    "deliveryUrl": "https://renegadeburrito.toast.site/order/renegade-ghost-kitchen-2171-s-grape-st",
+    "cateringUrl": "https://renegadeburrito.toast.site/order/renegade-ghost-kitchen-2171-s-grape-st",
+    "giftCardUrl": "",
+    "rewardsUrl": "",
+    "verified": "2026-10-26",
+    "testOrderPlaced": false
+   },
+   "cateringEmail": "renegadeburrito@outlook.com",
+   "cateringPhone": null
+  },
+  {
+   "id": "parkhill",
+   "name": "Denver \u2013 Park Hill",
+   "fullName": "Renegade Burrito Denver \u2013 Park Hill",
+   "page": "/location-denver-park-hill/",
+   "cateringPage": "/catering-park-hill/",
+   "contactPage": "/contact-denver-park-hill/",
+   "careersPage": "/join-our-team-denver-park-hill/",
+   "address": "5155 E 39th Ave, Unit 14",
+   "city": "Denver",
+   "state": "CO",
+   "zip": "80207",
+   "phone": "(720) 983-2277",
+   "lat": 39.77105,
+   "lng": -104.922268,
+   "googlePlaceId": "ChIJafhn03t7bIcR75Gm2TJ5_0Y",
+   "format": "Carry-out & delivery",
+   "dineIn": false,
+   "features": [
+    "Taco Tuesday items on the Toast menu"
+   ],
+   "nearby": "In Denver's Park Hill neighborhood on E 39th Ave.",
+   "photo": "/img/locations/parkhill.webp",
+   "hours": {
+    "mon": [
+     420,
+     1200
+    ],
+    "tue": [
+     420,
+     1200
+    ],
+    "wed": [
+     420,
+     1200
+    ],
+    "sun": [
+     420,
+     1260
+    ],
+    "thu": [
+     420,
+     1260
+    ],
+    "fri": [
+     420,
+     1260
+    ],
+    "sat": [
+     420,
+     1260
+    ]
+   },
+   "hoursSource": "Current live renegadeburrito.com structured data, Oct 26 2026",
+   "hoursVerified": false,
+   "hoursExceptions": [],
+   "orderingEnabled": true,
+   "deliveryEnabled": true,
+   "toast": {
+    "slug": "renegade-burrito-rino",
+    "orderUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-rino",
+    "pickupUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-rino",
+    "deliveryUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-rino",
+    "cateringUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-rino",
+    "giftCardUrl": "https://order.toasttab.com/egiftcards/renegade-burrito-rino",
+    "rewardsUrl": "https://www.toasttab.com/renegade-burrito-rino/rewardsSignup",
+    "verified": "2026-10-26",
+    "testOrderPlaced": false
+   },
+   "cateringEmail": "renegadeburrito@outlook.com",
+   "cateringPhone": null
+  },
+  {
+   "id": "lakewood",
+   "name": "Lakewood",
+   "fullName": "Renegade Burrito Lakewood",
+   "page": "/lakewood/",
+   "cateringPage": "/lakewood-catering/",
+   "contactPage": "/contact-lakewood/",
+   "careersPage": "/join-our-team-lakewood/",
+   "address": "220 Union Blvd",
+   "city": "Lakewood",
+   "state": "CO",
+   "zip": "80228",
+   "phone": "(720) 255-2011",
+   "lat": 39.718677,
+   "lng": -105.131937,
+   "googlePlaceId": null,
+   "format": "Dine-in, pickup & delivery",
+   "dineIn": true,
+   "features": [
+    "Newest location"
+   ],
+   "nearby": "On Union Blvd in Lakewood, near the Denver Federal Center and Belmar.",
+   "photo": "/img/locations/lakewood.webp",
+   "hours": {
+    "sun": [
+     420,
+     1200
+    ],
+    "mon": [
+     420,
+     1200
+    ],
+    "tue": [
+     420,
+     1200
+    ],
+    "wed": [
+     420,
+     1200
+    ],
+    "thu": [
+     420,
+     1200
+    ],
+    "fri": [
+     420,
+     1260
+    ],
+    "sat": [
+     420,
+     1260
+    ]
+   },
+   "hoursSource": "Current live renegadeburrito.com structured data, Oct 26 2026",
+   "hoursVerified": false,
+   "hoursExceptions": [],
+   "orderingEnabled": true,
+   "deliveryEnabled": true,
+   "toast": {
+    "slug": "renegade-burrito-220-union-blvd",
+    "orderUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-220-union-blvd",
+    "pickupUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-220-union-blvd",
+    "deliveryUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-220-union-blvd",
+    "cateringUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-220-union-blvd",
+    "giftCardUrl": "https://order.toasttab.com/egiftcards/renegade-burrito-220-union-blvd",
+    "rewardsUrl": "https://www.toasttab.com/renegade-burrito-220-union-blvd/rewardsSignup",
+    "verified": "2026-10-26",
+    "testOrderPlaced": false
+   },
+   "cateringEmail": "renegadeburritounion@gmail.com",
+   "cateringPhone": null
+  }
+ ]
+}
