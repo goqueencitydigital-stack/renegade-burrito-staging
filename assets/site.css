@@ -356,3 +356,11 @@ table.data th,table.data td{overflow-wrap:anywhere}
 .mrow{column-gap:10px}
 @media (max-width:1060px),(pointer:coarse){.mrow b a{display:inline-block;max-width:100%;overflow-wrap:anywhere;min-height:44px;padding:10px 0;box-sizing:border-box}}
 .mrow .btns{flex-wrap:nowrap}
+/* logo: never squeeze or stretch; fixed aspect ratio 1306x596 */
+.logo{flex:0 0 auto;display:inline-flex;align-items:center;line-height:0}
+.logo picture,.flogo picture{display:block;flex:0 0 auto}
+.logo img,.flogo img{display:block;max-width:none;width:auto;aspect-ratio:720/328;object-fit:contain;flex-shrink:0}
+.logo img{height:54px}
+.flogo{display:block;margin-bottom:14px}.flogo img{height:72px}
+@media (max-width:560px){.logo img{height:44px}}
+@media (max-width:350px){.logo img{height:38px}}
