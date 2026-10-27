@@ -17,13 +17,29 @@
    "toasttab.com",
    "toast.site"
   ],
-  "cateringOrdering": "Phone or quote request only. Catering cannot be ordered online through Toast (confirmed by Queen City Digital, Oct 26 2026)."
+  "cateringOrdering": "Phone or quote request only. Catering cannot be ordered online through Toast (confirmed by Queen City Digital, Oct 26 2026).",
+  "venues": [
+   {
+    "id": "empower",
+    "name": "Empower Field @ Mile High",
+    "section": "Section 127",
+    "address": "1701 Bryant St",
+    "city": "Denver",
+    "state": "CO",
+    "zip": "80204",
+    "page": "/empower-field/",
+    "photo": "/img/brand/breakfast.webp",
+    "schedule": "Open for all Broncos home games",
+    "format": "In-stadium · walk-up",
+    "source": "Owner-confirmed Oct 27 2026 (Section 127, all Broncos games). Address: empowerfieldatmilehigh.com"
+   }
+  ]
  },
  "locations": [
   {
    "id": "arvada",
-   "name": "Arvada",
-   "fullName": "Renegade Burrito Arvada",
+   "name": "Arvada/Westminster",
+   "fullName": "Renegade Burrito Arvada/Westminster",
    "page": "/arvada/",
    "cateringPage": "/arvada-catering/",
    "contactPage": "/contact-arvada/",
@@ -92,12 +108,15 @@
     "testOrderPlaced": false
    },
    "cateringEmail": "renegadeburrito@outlook.com",
-   "cateringPhone": null
+   "cateringPhone": null,
+   "crossStreets": "88th & Wadsworth",
+   "searchTerms": "westminster 88th wadsworth",
+   "nameNote": "Located at 88th and Wadsworth on the Arvada–Westminster border. Not the Orchard Parkway store (Westminster North)."
   },
   {
    "id": "westminster",
-   "name": "Westminster",
-   "fullName": "Renegade Burrito North Westminster",
+   "name": "Westminster North",
+   "fullName": "Renegade Burrito Westminster North",
    "page": "/westminster/",
    "cateringPage": "/westminster-catering/",
    "contactPage": "/contact-westminster/",
@@ -165,7 +184,10 @@
     "testOrderPlaced": false
    },
    "cateringEmail": null,
-   "cateringPhone": "(303) 287-7486"
+   "cateringPhone": "(303) 287-7486",
+   "crossStreets": "136th & I-25",
+   "searchTerms": "north westminster orchard 136th",
+   "nameNote": "At 136th and I-25 on Orchard Parkway. Not the Wadsworth Blvd store (Arvada/Westminster)."
   },
   {
    "id": "thornton",
