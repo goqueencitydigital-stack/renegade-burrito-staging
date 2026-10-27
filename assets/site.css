@@ -364,3 +364,12 @@ table.data th,table.data td{overflow-wrap:anywhere}
 .flogo{display:block;margin-bottom:14px}.flogo img{height:72px}
 @media (max-width:560px){.logo img{height:44px}}
 @media (max-width:350px){.logo img{height:38px}}
+/* brighter hero photography; overlay only where text sits */
+.hero-media img{opacity:1;filter:brightness(1.08) saturate(1.12) contrast(1.02)}
+.hero::after{background:linear-gradient(90deg,rgba(13,13,12,.86) 0px,rgba(13,13,12,.8) max(44%,660px),rgba(13,13,12,.6) max(58%,860px),rgba(13,13,12,.12) max(75%,1040px),rgba(13,13,12,0) max(86%,1180px))}
+.hero h1,.hero .lead,.hero .eyebrow{text-shadow:0 2px 14px rgba(0,0,0,.55)}
+@media (max-width:760px){.hero::after{background:linear-gradient(180deg,rgba(13,13,12,.56) 0%,rgba(13,13,12,.72) 50%,rgba(13,13,12,.8) 100%)}}
+.hero .eyebrow{color:#c8f0b8}
+.hero .lead{color:#f6eee4}
+.hero .crumbs,.hero .crumbs a{color:#f6eee4;text-shadow:0 1px 8px rgba(0,0,0,.7)}
+@media (max-width:760px){.hero::after{background:linear-gradient(180deg,rgba(13,13,12,.72) 0%,rgba(13,13,12,.64) 30%,rgba(13,13,12,.72) 60%,rgba(13,13,12,.8) 100%)}}
