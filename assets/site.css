@@ -416,3 +416,20 @@ dl.facts dt{font-weight:600;font-size:var(--t-sm)} dl.facts dd{margin:0;font-siz
 .build-price{font-family:var(--body);font-weight:800;letter-spacing:.01em}
 .build-price small{font-family:var(--body)}
 @media (max-width:900px){.build-media{order:0}.build-photo{aspect-ratio:16/9}.build{gap:22px}}
+/* ---- Home locations: 4 + 3 layout on desktop ---- */
+.loc43{display:grid;gap:20px;grid-template-columns:repeat(12,minmax(0,1fr))}
+.loc43>*{grid-column:span 3}
+.loc43>:nth-child(n+5){grid-column:span 4}
+.loc43>.card{display:flex;flex-direction:column;height:100%}
+.loc43 .card .ph{display:block;aspect-ratio:3/2;flex:0 0 auto}
+.loc43 .card .ph img{display:block;width:100%;height:100%;object-fit:cover}
+.loc43 .card .bd{flex:1;display:flex;flex-direction:column}
+.loc43 .card .bd>.btns:not(.small){margin-top:auto!important;padding-top:10px;gap:8px;flex-wrap:nowrap}
+.loc43 .card .bd>.btns .btn-sm{padding-left:14px;padding-right:14px}
+.loc43 .venue-card .bd>.btns.small{margin-top:auto!important}
+.loc43 .btns.small,.loc43 .btns{flex-wrap:wrap}
+@media (max-width:1100px){.loc43{grid-template-columns:repeat(2,minmax(0,1fr))}.loc43>*,.loc43>:nth-child(n+5){grid-column:span 1}.loc43>:last-child:nth-child(odd){grid-column:1/-1}}
+@media (max-width:640px){.loc43{grid-template-columns:1fr}.loc43>:last-child:nth-child(odd){grid-column:auto}}
+@media (min-width:1101px){.loc43 .card .bd>.btns .btn-sm{white-space:nowrap;padding-left:12px;padding-right:12px;font-size:.72rem}
+.loc43 .card .btns.small{font-size:.8rem;column-gap:2px}}
+@media (min-width:641px) and (max-width:1100px){.loc43>:last-child:nth-child(odd){flex-direction:row}.loc43>:last-child:nth-child(odd) .ph{flex:0 0 50%;aspect-ratio:auto;min-height:260px}}
