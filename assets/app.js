@@ -165,7 +165,7 @@ document.addEventListener("click",function(e){
   // nav dropdowns
   var dd=e.target.closest(".dd>button");document.querySelectorAll(".dd.open").forEach(function(x){if(!dd||x!==dd.parentNode){x.classList.remove("open");x.querySelector("button").setAttribute("aria-expanded","false")}});
   if(dd){var open=dd.parentNode.classList.toggle("open");dd.setAttribute("aria-expanded",open?"true":"false")}
-  var bg=e.target.closest(".burger");if(bg){var m=document.querySelector(".mnav"),o=m.classList.toggle("open");bg.setAttribute("aria-expanded",o?"true":"false");document.body.style.overflow=o?"hidden":""}
+  var bg=e.target.closest(".burger");if(bg){var m=document.querySelector(".mnav"),o=m.classList.toggle("open");bg.setAttribute("aria-expanded",o?"true":"false");document.body.style.overflow=o?"hidden":"";document.body.classList.toggle("nav-open",o);if(o){var hd=document.querySelector(".hdr");m.style.top=hd.offsetHeight+"px";m.style.height=(window.innerHeight-hd.getBoundingClientRect().bottom)+"px"}}
 });
 document.addEventListener("keydown",function(e){if(e.key==="Escape"){document.querySelectorAll(".dd.open").forEach(function(x){x.classList.remove("open")})}});
 // hero / page choosers: <form data-chooser><select>…</select></form>
