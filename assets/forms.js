@@ -1,5 +1,5 @@
 /* Forms: catering quote, fundraising, contact, careers + catering estimate calculator.
-   No payments are collected. Catering ORDERS are placed in Toast; this form only requests a quote.
+   No payments are collected. Catering is ordered by phone or with this quote request; it is not sold online.
    Delivery: if RB_CONFIG.brand.formEndpoint is set, POST JSON there; otherwise (staging) hand off
    via a pre-filled email to the location's approved catering contact. */
 (function(){
@@ -19,7 +19,8 @@ document.querySelectorAll("form[data-lead]").forEach(function(f){
   f.setAttribute("novalidate","");
   f.querySelectorAll("input,select,textarea").forEach(function(el){el.addEventListener("blur",function(){if(el.hasAttribute("required")&&el.getAttribute("aria-invalid")==="true")validate(f)})});
   var lsel=f.elements["location"];
-  if(lsel){var cur=window.RBgetLoc&&window.RBgetLoc();if(cur&&!lsel.value)lsel.value=cur.id}
+  var qp=new URLSearchParams(location.search),ql=qp.get("loc");
+  if(lsel){if(ql&&byId[ql]&&!lsel.value)lsel.value=ql;var cur=window.RBgetLoc&&window.RBgetLoc();if(cur&&!lsel.value)lsel.value=cur.id}
   f.addEventListener("submit",function(e){e.preventDefault();
     if(f.elements["company_website"]&&f.elements["company_website"].value)return; // honeypot
     if(!validate(f))return;
@@ -50,13 +51,13 @@ if(calc){var P=window.RB_CATER||{},f=calc;
     order.setAttribute("data-loc",loc||"");if(window.RBpaint)window.RBpaint();
     if(!loc||!pk){out.textContent="—";note.textContent="Choose a location and a package to see an estimate.";return}
     var p=(P[loc]||{})[pk];
-    if(!p){out.textContent="Quote";note.textContent="This package isn't listed with per-person pricing on the "+byId[loc].name+" Toast menu. Request a quote and the team will price it for you.";return}
+    if(!p){out.textContent="Quote";note.textContent="This package isn't listed with per-person pricing on the "+byId[loc].name+" menu. Request a quote and the team will price it for you.";return}
     if(p.perPerson===null){out.textContent="Quote";note.textContent=p.note;return}
     var min=p.min||0,warn="";if(g<min){warn=" Minimum is "+min+" guests for this package."}
     var sub=p.perPerson*Math.max(g,0),add=0;
     f.querySelectorAll("[data-addon]:checked").forEach(function(a){var ap=(P[loc]||{})[a.value];if(ap&&ap.perPack){add+=ap.perPack*Math.ceil(g/(ap.serves||10))}});
     out.textContent=money(sub+add);
-    note.textContent="Estimate only: "+g+" guests × "+money(p.perPerson)+" ("+p.label+", "+byId[loc].name+" Toast price as of "+(P._asOf||"")+")"+(add?" + add-ons "+money(add):"")+". Excludes tax, delivery and setup fees, which the restaurant quotes. Final price and availability are confirmed by Renegade Burrito."+warn;
+    note.textContent="Estimate only: "+g+" guests × "+money(p.perPerson)+" ("+p.label+", "+byId[loc].name+" listed price as of "+(P._asOf||"")+")"+(add?" + add-ons "+money(add):"")+". Excludes tax, delivery and setup fees, which the restaurant quotes. Final price and availability are confirmed by Renegade Burrito."+warn;
     if(ev&&ev.type==="change")window.RBtrack&&window.RBtrack("catering_estimate",{location_id:loc,package:pk,guests:g});
   }
   f.addEventListener("input",function(){run()});f.addEventListener("change",run);

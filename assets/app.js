@@ -40,7 +40,7 @@ function resolve(kind,loc,item){
   switch(kind){
     case "pickup":u=t.pickupUrl||t.orderUrl;break;
     case "delivery":u=loc.deliveryEnabled?(t.deliveryUrl||t.orderUrl):null;break;
-    case "catering":u=t.cateringUrl||t.orderUrl;break;
+    case "catering":u=null;break; // catering is phone/quote only
     case "item":u=itemUrl(item,loc);break;
     case "gift":u=t.giftCardUrl||null;break;
     case "rewards":u=t.rewardsUrl||null;break;
@@ -88,6 +88,8 @@ function paint(){
     if(pr)pr.textContent=x?(x[1]||""):"";
     if(av)av.textContent=x?"":"Not on the "+cur.name+" menu";
   });
+  // catering call buttons: use the chosen store's catering line (Westminster has its own); default is the main catering line
+  document.querySelectorAll("a[data-cater-call]").forEach(function(a){var lid=a.getAttribute("data-loc"),l=lid?byId[lid]:cur;var ph=(l&&(l.cateringPhone||l.phone))||CFG.brand.cateringPhone;if(!a.dataset.origLabel)a.dataset.origLabel=a.textContent;a.setAttribute("href","tel:+1"+ph.replace(/\D/g,""));if(/^Call to order/.test(a.dataset.origLabel))a.textContent="Call to order "+ph});
   document.querySelectorAll("[data-open-status]").forEach(function(el){var l=byId[el.getAttribute("data-open-status")];var s=l&&openState(l);if(s){el.textContent=s.label;el.className="status "+(s.open?"open":"closed");el.hidden=false}else{el.hidden=true}});
   document.querySelectorAll("[data-loc-only]").forEach(function(el){var ids=el.getAttribute("data-loc-only").split(" ");el.hidden=!!cur&&ids.indexOf(cur.id)<0});
 }
@@ -132,7 +134,7 @@ function closeModal(){if(modal){modal.classList.remove("on");pending=null;lastFo
 window.RBopenSelector=openModal;
 
 /* ---------- go to Toast ---------- */
-var EV={order:"order_online_click",pickup:"order_pickup_click",delivery:"order_delivery_click",catering:"order_catering_click",item:"order_item_click",gift:"gift_card_click",rewards:"rewards_click"};
+var EV={order:"order_online_click",pickup:"order_pickup_click",delivery:"order_delivery_click",item:"order_item_click",gift:"gift_card_click",rewards:"rewards_click"};
 function go(kind,loc,item,placement,el){
   var u=resolve(kind,loc,item);
   if(!u){notAvail(kind,loc);return}
@@ -156,10 +158,10 @@ document.addEventListener("click",function(e){
   if(a){if(e.metaKey||e.ctrlKey||e.shiftKey||e.button===1){var l0=a.getAttribute("data-loc")?byId[a.getAttribute("data-loc")]:getLoc();if(l0)return;}
     e.preventDefault();var kind=a.getAttribute("data-order"),lid=a.getAttribute("data-loc"),loc=lid?byId[lid]:getLoc(),item=a.getAttribute("data-item"),pl=a.getAttribute("data-placement");
     if(lid&&!getLoc())try{sessionStorage.setItem(LOC_KEY,lid)}catch(x){}
-    if(!loc){pending={kind:kind,item:item,placement:pl,el:a};openModal(kind==="catering"?"Choose the restaurant that will prepare your catering order. Catering is ordered through that location's Toast page.":null);return}
+    if(!loc){pending={kind:kind,item:item,placement:pl,el:a};openModal(null);return}
     go(kind,loc,item,pl,a);return}
   var c=e.target.closest("[data-choose-loc]");if(c){e.preventDefault();openModal();return}
-  var t=e.target.closest('a[href^="tel:"]');if(t){track("phone_click",{location_id:t.getAttribute("data-loc")||"",link_url:t.href})}
+  var t=e.target.closest('a[href^="tel:"]');if(t){var cc=t.hasAttribute("data-cater-call");track(cc?"catering_call_click":"phone_click",{location_id:t.getAttribute("data-loc")||(cc&&getLoc()?getLoc().id:""),placement:t.getAttribute("data-placement")||"",link_url:t.href})}
   var d=e.target.closest("a[data-directions]");if(d){track("directions_click",{location_id:d.getAttribute("data-directions"),link_url:d.href})}
   var ev=e.target.closest("[data-ev]");if(ev){track(ev.getAttribute("data-ev"),{link_url:ev.href||"",location_id:ev.getAttribute("data-loc")||"",placement:ev.getAttribute("data-placement")||""})}
   // nav dropdowns

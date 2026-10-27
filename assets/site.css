@@ -345,3 +345,14 @@ h1,h2,h3,h4,.title,.lead{overflow-wrap:break-word;word-break:normal;hyphens:manu
 table.data th,table.data td{overflow-wrap:anywhere}
 @media (max-width:600px){h1{overflow-wrap:anywhere}}
 @media (max-width:1060px),(pointer:coarse){h2 > a:only-child,h3 > a:only-child{display:inline-flex;align-items:center;min-height:44px}}
+/* catering: phone or quote only */
+.howcater{background:var(--paper);border:1px solid var(--line,#e6dccb);border-radius:var(--r-lg,16px);padding:20px}
+.calllist{list-style:none;margin:16px 0 8px;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px 20px}
+.calllist li{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--line,#e6dccb);flex-wrap:wrap}
+.calllist li a b{color:var(--ink)}
+@media (max-width:600px){.calllist{grid-template-columns:1fr}.calllist .btn{margin-left:auto}}
+.nowrap{white-space:nowrap}
+.mrow > *:first-child,.mrow a,.mrow h3,.mrow h4{overflow-wrap:anywhere}
+.mrow{column-gap:10px}
+@media (max-width:1060px),(pointer:coarse){.mrow b a{display:inline-block;max-width:100%;overflow-wrap:anywhere;min-height:44px;padding:10px 0;box-sizing:border-box}}
+.mrow .btns{flex-wrap:nowrap}

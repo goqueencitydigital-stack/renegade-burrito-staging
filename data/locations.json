@@ -16,7 +16,8 @@
   "allowedOrderDomains": [
    "toasttab.com",
    "toast.site"
-  ]
+  ],
+  "cateringOrdering": "Phone or quote request only. Catering cannot be ordered online through Toast (confirmed by Queen City Digital, Oct 26 2026)."
  },
  "locations": [
   {
@@ -39,7 +40,7 @@
    "dineIn": true,
    "features": [
     "Heated patio (seats up to 40 for private events)",
-    "Happy Hour 2\u20135 pm daily (Arvada only)",
+    "Happy Hour 2–5 pm daily (Arvada only)",
     "Margaritas and beer"
    ],
    "nearby": "Near Olde Town Arvada, Lake Arbor and Indian Tree Golf Club, at 88th and Wadsworth.",
@@ -84,7 +85,7 @@
     "orderUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-arvada-new-8770-wadsworth-blvd-unit-b",
     "pickupUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-arvada-new-8770-wadsworth-blvd-unit-b",
     "deliveryUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-arvada-new-8770-wadsworth-blvd-unit-b",
-    "cateringUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-arvada-new-8770-wadsworth-blvd-unit-b",
+    "cateringUrl": null,
     "giftCardUrl": "https://order.toasttab.com/egiftcards/renegade-burrito-arvada-new-8770-wadsworth-blvd-unit-b",
     "rewardsUrl": "https://www.toasttab.com/renegade-burrito-arvada-new-8770-wadsworth-blvd-unit-b/rewardsSignup",
     "verified": "2026-10-26",
@@ -157,7 +158,7 @@
     "orderUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-westminster-new-13648-orchard-parkway",
     "pickupUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-westminster-new-13648-orchard-parkway",
     "deliveryUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-westminster-new-13648-orchard-parkway",
-    "cateringUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-westminster-new-13648-orchard-parkway",
+    "cateringUrl": null,
     "giftCardUrl": "https://order.toasttab.com/egiftcards/renegade-burrito-westminster-new-13648-orchard-parkway",
     "rewardsUrl": "https://www.toasttab.com/renegade-burrito-westminster-new-13648-orchard-parkway/rewardsSignup",
     "verified": "2026-10-26",
@@ -229,7 +230,7 @@
     "orderUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-thornton-new-10005-grant-st-unit-e",
     "pickupUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-thornton-new-10005-grant-st-unit-e",
     "deliveryUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-thornton-new-10005-grant-st-unit-e",
-    "cateringUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-thornton-new-10005-grant-st-unit-e",
+    "cateringUrl": null,
     "giftCardUrl": "https://order.toasttab.com/egiftcards/renegade-burrito-thornton-new-10005-grant-st-unit-e",
     "rewardsUrl": "https://www.toasttab.com/renegade-burrito-thornton-new-10005-grant-st-unit-e/rewardsSignup",
     "verified": "2026-10-26",
@@ -240,8 +241,8 @@
   },
   {
    "id": "du",
-   "name": "Denver \u2013 DU",
-   "fullName": "Renegade Burrito Denver \u2013 DU",
+   "name": "Denver – DU",
+   "fullName": "Renegade Burrito Denver – DU",
    "page": "/denver/",
    "cateringPage": "/denver-catering/",
    "contactPage": "/contact-denver-du/",
@@ -257,7 +258,7 @@
    "format": "Pickup & delivery only (ghost kitchen)",
    "dineIn": false,
    "features": [
-    "Pickup and delivery only \u2014 no dining room"
+    "Pickup and delivery only — no dining room"
    ],
    "nearby": "Near the University of Denver, Washington Park and the Cherry Creek Shopping District.",
    "photo": "/img/locations/du.webp",
@@ -301,7 +302,7 @@
     "orderUrl": "https://renegadeburrito.toast.site/order/renegade-ghost-kitchen-2171-s-grape-st",
     "pickupUrl": "https://renegadeburrito.toast.site/order/renegade-ghost-kitchen-2171-s-grape-st",
     "deliveryUrl": "https://renegadeburrito.toast.site/order/renegade-ghost-kitchen-2171-s-grape-st",
-    "cateringUrl": "https://renegadeburrito.toast.site/order/renegade-ghost-kitchen-2171-s-grape-st",
+    "cateringUrl": null,
     "giftCardUrl": "",
     "rewardsUrl": "",
     "verified": "2026-10-26",
@@ -312,8 +313,8 @@
   },
   {
    "id": "parkhill",
-   "name": "Denver \u2013 Park Hill",
-   "fullName": "Renegade Burrito Denver \u2013 Park Hill",
+   "name": "Denver – Park Hill",
+   "fullName": "Renegade Burrito Denver – Park Hill",
    "page": "/location-denver-park-hill/",
    "cateringPage": "/catering-park-hill/",
    "contactPage": "/contact-denver-park-hill/",
@@ -373,7 +374,7 @@
     "orderUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-rino",
     "pickupUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-rino",
     "deliveryUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-rino",
-    "cateringUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-rino",
+    "cateringUrl": null,
     "giftCardUrl": "https://order.toasttab.com/egiftcards/renegade-burrito-rino",
     "rewardsUrl": "https://www.toasttab.com/renegade-burrito-rino/rewardsSignup",
     "verified": "2026-10-26",
@@ -445,7 +446,7 @@
     "orderUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-220-union-blvd",
     "pickupUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-220-union-blvd",
     "deliveryUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-220-union-blvd",
-    "cateringUrl": "https://renegadeburrito.toast.site/order/renegade-burrito-220-union-blvd",
+    "cateringUrl": null,
     "giftCardUrl": "https://order.toasttab.com/egiftcards/renegade-burrito-220-union-blvd",
     "rewardsUrl": "https://www.toasttab.com/renegade-burrito-220-union-blvd/rewardsSignup",
     "verified": "2026-10-26",

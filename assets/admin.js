@@ -18,7 +18,7 @@ function okUrl(u){if(!u)return true;try{var x=new URL(u),h=x.hostname;return x.p
 function hm(m){if(m==null||m==="")return"";var h=Math.floor(m/60),n=m%60;return(h<10?"0":"")+h+":"+(n<10?"0":"")+n}
 function mh(s){if(!s)return null;var p=s.split(":");return +p[0]*60+ +p[1]}
 function msg(t,bad){var m=$("ad-msg");m.textContent=t;m.style.color=bad?"#a3161b":"";}
-var TF=[["orderUrl","Order online URL (main)"],["pickupUrl","Pickup URL"],["deliveryUrl","Delivery URL"],["cateringUrl","Catering URL"],["giftCardUrl","Digital gift card URL"],["rewardsUrl","Rewards sign-up URL"]];
+var TF=[["orderUrl","Order online URL (main)"],["pickupUrl","Pickup URL"],["deliveryUrl","Delivery URL"],["giftCardUrl","Digital gift card URL"],["rewardsUrl","Rewards sign-up URL"]];
 function field(id,label,val,type,extra){return '<div class="field'+(type==="url"?" full":"")+'"><label for="'+id+'">'+label+'</label><input id="'+id+'" type="'+(type||"text")+'" value="'+esc(val)+'"'+(extra||"")+'><div class="err">Must be an https link on '+ALLOWED.join(" or ")+'.</div></div>'}
 function chk(id,label,val){return '<label class="small" style="display:block;margin:4px 0"><input type="checkbox" id="'+id+'"'+(val?" checked":"")+'> '+label+'</label>'}
 function renderLocs(){
