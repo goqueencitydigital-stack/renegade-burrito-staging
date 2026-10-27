@@ -401,7 +401,7 @@ dl.facts dt{font-weight:600;font-size:var(--t-sm)} dl.facts dd{margin:0;font-siz
 .build-photo{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/5;background:var(--ink)}
 .build-photo img{width:100%;height:100%;object-fit:cover;object-position:45% 50%;display:block}
 .build-price{position:absolute;left:16px;bottom:16px;background:var(--orange);color:var(--ink);border-radius:var(--r);padding:10px 16px;font-family:var(--display);font-size:1.9rem;line-height:1;box-shadow:0 6px 18px rgba(0,0,0,.35)}
-.build-price small{display:block;font-family:inherit;font-family:var(--body,inherit);font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.build-price small{display:block;font-family:inherit;font-family:var(--body,inherit);font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
 .bsteps{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:0}
 .bsteps>li{display:grid;grid-template-columns:52px 1fr;gap:18px;padding:20px 0;border-top:1px solid var(--line-d)}
 .bsteps>li:last-child{border-bottom:1px solid var(--line-d)}
@@ -433,3 +433,7 @@ dl.facts dt{font-weight:600;font-size:var(--t-sm)} dl.facts dd{margin:0;font-siz
 @media (min-width:1101px){.loc43 .card .bd>.btns .btn-sm{white-space:nowrap;padding-left:12px;padding-right:12px;font-size:.72rem}
 .loc43 .card .btns.small{font-size:.8rem;column-gap:2px}}
 @media (min-width:641px) and (max-width:1100px){.loc43>:last-child:nth-child(odd){flex-direction:row}.loc43>:last-child:nth-child(odd) .ph{flex:0 0 50%;aspect-ratio:auto;min-height:260px}}
+picture{display:contents}
+/* low-resolution originals: show at native size instead of stretching */
+.ph img.lowres{object-fit:scale-down;background:#fff}
+.media.lowres{max-width:min(100%,var(--mw));width:100%;justify-self:center;align-self:center;margin-inline:auto}
