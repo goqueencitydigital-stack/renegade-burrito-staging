@@ -437,3 +437,4 @@ picture{display:contents}
 /* low-resolution originals: show at native size instead of stretching */
 .ph img.lowres{object-fit:scale-down;background:#fff}
 .media.lowres{max-width:min(100%,var(--mw));width:100%;justify-self:center;align-self:center;margin-inline:auto}
+.hero-media img[src*="locations/parkhill"]{object-position:22% 50%}
