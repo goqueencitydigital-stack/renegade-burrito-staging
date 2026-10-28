@@ -1,5 +1,5 @@
-/* Renegade Burrito runtime — Toast-only ordering, location memory, GA4 events.
-   Every ordering URL comes from RB_CONFIG (data/locations.json). Change a store's Toast
+/* Renegade Burrito runtime — single online-ordering provider, location memory, GA4 events.
+   Every ordering URL comes from RB_CONFIG (data/locations.json). Change a store's ordering
    URL there (or via /admin/) and every button on the site follows. */
 (function(){
 "use strict";
@@ -73,11 +73,11 @@ function paint(){
   document.querySelectorAll("[data-loc-label]").forEach(function(el){el.textContent=cur?cur.name:(el.getAttribute("data-empty")||"Choose location")});
   document.querySelectorAll("[data-order]").forEach(function(a){
     var kind=a.getAttribute("data-order"),lid=a.getAttribute("data-loc"),loc=lid?byId[lid]:cur,item=a.getAttribute("data-item");
-    if(!loc){a.setAttribute("href",BASE+"/order/");a.removeAttribute("aria-disabled");return}
+    if(!loc){a.setAttribute("href",BASE+(window.RB_ORDER_PATH||"/order/"));a.removeAttribute("aria-disabled");return}
     var u=resolve(kind,loc,item);
     if(u){a.setAttribute("href",withUtm(u,a.getAttribute("data-placement")||kind));a.removeAttribute("aria-disabled");a.setAttribute("rel","noopener");
       if(a.hasAttribute("data-unavail-label")&&a.dataset.origLabel){a.textContent=a.dataset.origLabel}}
-    else{a.setAttribute("href",BASE+"/order/");
+    else{a.setAttribute("href",BASE+(window.RB_ORDER_PATH||"/order/"));
       if(kind==="item"||kind==="delivery"||kind==="gift"||kind==="rewards"){a.setAttribute("aria-disabled","true");if(a.hasAttribute("data-unavail-label")){a.dataset.origLabel=a.dataset.origLabel||a.textContent;a.textContent=a.getAttribute("data-unavail-label")}}}
   });
   // menu availability + prices
@@ -100,7 +100,7 @@ var modal,pending=null;
 function buildModal(){
   modal=document.createElement("div");modal.className="modal";modal.setAttribute("role","dialog");modal.setAttribute("aria-modal","true");modal.setAttribute("aria-labelledby","locm-t");
   modal.innerHTML='<div class="modal-box"><div class="modal-head"><h2 id="locm-t">Choose your Renegade</h2><button class="xbtn" type="button" aria-label="Close">&times;</button></div>'+
-  '<p class="small muted mb0" id="locm-why">Pick a restaurant and we will send you to its Toast online ordering page. We remember your choice for this visit.</p>'+
+  '<p class="small muted mb0" id="locm-why">Pick a restaurant and we will send you to its online ordering page. We remember your choice for this visit.</p>'+
   '<div class="menu-tools" style="margin:14px 0 0"><label class="sr" for="locm-q">Search by city, ZIP or neighborhood</label><input id="locm-q" type="search" placeholder="Search city, ZIP or neighborhood" autocomplete="off" style="flex:1 1 200px;min-height:46px;border-radius:999px;border:2px solid var(--line-l);padding:0 16px;font:inherit">'+
   '<button class="btn btn-sm btn-ghost" type="button" data-geo>Use my location</button></div><p class="xs muted" data-geo-msg aria-live="polite"></p><div class="loclist" role="list"></div></div>';
   document.body.appendChild(modal);
@@ -129,11 +129,11 @@ function geoSort(msg,cb){
 window.RBgeoSort=geoSort;window.RBdist=dist;
 function hav(a,b,c,d){var R=3958.8,r=Math.PI/180,x=Math.sin((c-a)*r/2),y=Math.sin((d-b)*r/2);var h=x*x+Math.cos(a*r)*Math.cos(c*r)*y*y;return 2*R*Math.asin(Math.sqrt(h))}
 var lastFocus=null;
-function openModal(why){if(!modal)buildModal();lastFocus=document.activeElement;modal.querySelector("#locm-why").textContent=why||"Pick a restaurant and we will send you to its Toast online ordering page. We remember your choice for this visit.";renderList("");modal.classList.add("on");setTimeout(function(){modal.querySelector("#locm-q").focus()},30)}
+function openModal(why){if(!modal)buildModal();lastFocus=document.activeElement;modal.querySelector("#locm-why").textContent=why||"Pick a restaurant and we will send you to its online ordering page. We remember your choice for this visit.";renderList("");modal.classList.add("on");setTimeout(function(){modal.querySelector("#locm-q").focus()},30)}
 function closeModal(){if(modal){modal.classList.remove("on");pending=null;lastFocus&&lastFocus.focus&&lastFocus.focus()}}
 window.RBopenSelector=openModal;
 
-/* ---------- go to Toast ---------- */
+/* ---------- go to online ordering ---------- */
 var EV={order:"order_online_click",pickup:"order_pickup_click",delivery:"order_delivery_click",item:"order_item_click",gift:"gift_card_click",rewards:"rewards_click"};
 function go(kind,loc,item,placement,el){
   var u=resolve(kind,loc,item);
@@ -146,7 +146,7 @@ function go(kind,loc,item,placement,el){
 }
 function notAvail(kind,loc){
   if(!modal)buildModal();
-  var msg=kind==="item"?"This item isn't on the "+loc.name+" Toast menu. Browse the full "+loc.name+" menu instead, or choose another location.":
+  var msg=kind==="item"?"This item isn't on the "+loc.name+" online menu. Browse the full "+loc.name+" menu instead, or choose another location.":
    kind==="delivery"?"Delivery isn't currently enabled for "+loc.name+" online. Choose pickup or call "+loc.phone+".":
    kind==="gift"?"Digital gift cards aren't available online for "+loc.name+" yet. Choose another location's gift card page or ask in store.":
    kind==="rewards"?"Online rewards sign-up isn't active for "+loc.name+" yet.":

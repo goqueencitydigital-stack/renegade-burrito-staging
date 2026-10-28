@@ -17,7 +17,7 @@
    "toasttab.com",
    "toast.site"
   ],
-  "cateringOrdering": "Phone or quote request only. Catering cannot be ordered online through Toast (confirmed by Queen City Digital, Oct 26 2026).",
+  "cateringOrdering": "Phone or quote request only. Catering cannot be ordered online (confirmed by Queen City Digital, Oct 26 2026).",
   "venues": [
    {
     "id": "empower",
@@ -352,7 +352,7 @@
    "format": "Carry-out & delivery",
    "dineIn": false,
    "features": [
-    "Taco Tuesday items on the Toast menu"
+    "Taco Tuesday items on the online menu"
    ],
    "nearby": "In Denver's Park Hill neighborhood on E 39th Ave.",
    "photo": "/img/locations/parkhill.webp",

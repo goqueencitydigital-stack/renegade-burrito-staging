@@ -36,7 +36,7 @@ document.querySelectorAll("form[data-lead]").forEach(function(f){
       var mail=box.querySelector("[data-mailto]"),ph=box.querySelector("[data-phone]");
       if(mail){if(!sent&&to){mail.href="mailto:"+to+"?subject="+encodeURIComponent(subj)+"&body="+encodeURIComponent(lines.join("\n")+"\n\nSent from "+location.href);mail.hidden=false;mail.textContent="Email this request to "+to}else mail.hidden=true}
       var phone=loc&&(loc.cateringPhone||loc.phone);if(ph&&phone){ph.href="tel:"+phone.replace(/\D/g,"");ph.textContent="Call "+(loc.name)+" "+phone;ph.hidden=false}
-      var st=box.querySelector("[data-status]");if(st)st.textContent=sent?"Your request was sent to the Renegade Burrito team.":"Staging mode: form delivery is not connected yet. Use the button below to email your request to the approved contact.";
+      var st=box.querySelector("[data-status]");if(st)st.textContent=sent?"Your request was sent to the Renegade Burrito team.":"Almost done: tap “Email this request” below to send it (your email app opens with everything filled in), or call the restaurant.";
       box.focus()}
     var ep=CFG.brand.formEndpoint;
     if(ep){fetch(ep,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(Object.assign({to:to},data))}).then(function(r){done(r.ok)}).catch(function(){done(false)})}else done(false);
