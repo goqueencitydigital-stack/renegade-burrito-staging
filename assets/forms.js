@@ -47,7 +47,8 @@ document.querySelectorAll("form[data-lead]").forEach(function(f){
       live.textContent="Sending your request…";
       function finish(ok){if(fin)return;fin=true;clearTimeout(tm);if(btn){btn.disabled=false;btn.removeAttribute("aria-busy");btn.textContent=lbl}live.textContent="";done(ok)}
       var ac=window.AbortController?new AbortController():null,tm=setTimeout(function(){ac&&ac.abort();finish(false)},10000);
-      fetch(ep,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(payload),signal:ac?ac.signal:undefined})
+      payload._site="restaurant";var gas=/script\.google\.com/.test(ep);
+      fetch(ep,{method:"POST",headers:gas?{"Content-Type":"text/plain;charset=utf-8"}:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(payload),redirect:"follow",signal:ac?ac.signal:undefined})
         .then(function(r){return r.json().catch(function(){return {}}).then(function(j){return r.ok&&String(j.success)==="true"})})
         .then(finish).catch(function(){finish(false)})}else done(false);
   });
