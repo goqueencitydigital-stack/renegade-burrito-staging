@@ -195,5 +195,22 @@ var hu=document.querySelector("[data-hide-unavail]");if(hu){hu.addEventListener(
   document.querySelectorAll("[data-promo-wrap]").forEach(function(w){if(!w.querySelector("[data-promo]")){var em=w.querySelector("[data-promo-empty]");if(em)em.hidden=false}});
 })();
 if(document.documentElement.classList.contains("rb-preview")){var pb=document.querySelector(".previewbar");if(pb)pb.classList.add("on")}
+
+// sticky mobile order bar: only after the hero (and its order box) scrolls away
+(function(){var bar=document.querySelector("[data-sticky-order]"),h=document.querySelector(".hero");if(!bar)return;
+  if(!h||!("IntersectionObserver" in window)){bar.classList.add("show");return}
+  new IntersectionObserver(function(es){es.forEach(function(x){bar.classList.toggle("show",!x.isIntersecting)})},{rootMargin:"0px 0px -40px 0px"}).observe(h)})();
+// menu hub: highlight the category in view, collapse long categories on phones
+(function(){var tabs=document.querySelectorAll(".mtabs a[data-spy]");if(tabs.length&&"IntersectionObserver" in window){
+  var map={};tabs.forEach(function(a){map[a.getAttribute("data-spy")]=a});
+  var io=new IntersectionObserver(function(es){es.forEach(function(x){if(!x.isIntersecting)return;tabs.forEach(function(a){a.removeAttribute("aria-current")});var a=map[x.target.id];if(a){a.setAttribute("aria-current","true");var w=a.parentNode;w.scrollTo({left:a.offsetLeft-w.clientWidth/2+a.offsetWidth/2,behavior:"smooth"})}})},{rootMargin:"-40% 0px -55% 0px"});
+  document.querySelectorAll("[data-menu-sec][id]").forEach(function(sct){io.observe(sct)})}
+  document.querySelectorAll("[data-menu-sec][data-collapse]").forEach(function(sct){var n=sct.querySelectorAll("[data-menu-item]").length;if(n<=6)return;
+    sct.classList.add("collapsed");var b=document.createElement("button");b.type="button";b.className="btn btn-dark btn-sm more-btn";b.textContent="Show all "+n+" items";
+    b.addEventListener("click",function(){sct.classList.remove("collapsed");b.remove()});sct.querySelector(".grid").after(b)});
+  var q=document.querySelector("[data-menu-search]");if(q)q.addEventListener("input",function(){document.querySelectorAll(".collapsed").forEach(function(x){x.classList.remove("collapsed");var b=x.querySelector(".more-btn");if(b)b.remove()})});
+})();
+// review carousel arrows
+document.querySelectorAll("[data-rail]").forEach(function(w){var r=w.querySelector(".rail");w.querySelectorAll("[data-rail-dir]").forEach(function(b){b.addEventListener("click",function(){r.scrollBy({left:(+b.getAttribute("data-rail-dir"))*r.clientWidth*0.85,behavior:"smooth"})})})});
 paint();
 })();

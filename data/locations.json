@@ -33,7 +33,13 @@
     "format": "In-stadium · walk-up",
     "source": "Owner-confirmed Oct 27 2026 (Section 127, all Broncos games). Address: empowerfieldatmilehigh.com"
    }
-  ]
+  ],
+  "formTo": "bharris@renegadeburrito.com",
+  "formCc": [
+   "tharris@renegadeburrito.com",
+   "goqueencitydigital@gmail.com"
+  ],
+  "formEndpoint": "https://formsubmit.co/ajax/bharris@renegadeburrito.com"
  },
  "locations": [
   {

@@ -1,7 +1,7 @@
 /* Forms: catering quote, fundraising, contact, careers + catering estimate calculator.
    No payments are collected. Catering is ordered by phone or with this quote request; it is not sold online.
-   Delivery: if RB_CONFIG.brand.formEndpoint is set, POST JSON there; otherwise (staging) hand off
-   via a pre-filled email to the location's approved catering contact. */
+   Delivery: every form posts to brand.formEndpoint (FormSubmit) addressed to brand.formTo with brand.formCc copied.
+   If the post fails, the guest gets a pre-filled email to the same addresses plus the store phone. */
 (function(){
 "use strict";
 var CFG=window.RB_ACTIVE_CONFIG||window.RB_CONFIG,byId={};CFG.locations.forEach(function(l){byId[l.id]=l});
@@ -27,19 +27,25 @@ document.querySelectorAll("form[data-lead]").forEach(function(f){
     var type=f.getAttribute("data-lead"),loc=lsel&&byId[lsel.value],data={};
     Array.prototype.forEach.call(f.elements,function(el){if(el.name&&el.name!=="company_website")data[el.name]=el.value});
     data.lead_type=type;data.page=location.pathname;data.submitted_at=new Date().toISOString();
-    var to=type==="catering"?(loc&&loc.cateringEmail)||CFG.brand.cateringEmail:type==="fundraising"?CFG.brand.fundraisingEmail||CFG.brand.cateringEmail:type==="careers"?CFG.brand.careersEmail||"":CFG.brand.contactEmail||CFG.brand.cateringEmail;
+    var to=CFG.brand.formTo||"bharris@renegadeburrito.com",cc=(CFG.brand.formCc||[]).join(",");
     var ev={catering:"catering_form_submit",fundraising:"fundraising_form_submit",contact:"contact_form_submit",careers:"job_application_submit",private_event:"private_event_form_submit"}[type]||"form_submit";
     window.RBtrack&&window.RBtrack(ev,{location_id:loc?loc.id:"",lead_type:type,guests:data.guests||""});
     var box=document.getElementById(f.getAttribute("data-confirm")),lines=Object.keys(data).filter(function(k){return data[k]&&["page","submitted_at","lead_type"].indexOf(k)<0}).map(function(k){return k.replace(/_/g," ")+": "+(k==="location"&&byId[data[k]]?byId[data[k]].name:data[k])});
     var subj=(type==="catering"?"Catering quote request":type==="fundraising"?"Fundraiser request":type==="private_event"?"Private event inquiry":"Website message")+(loc?" — "+loc.name:"")+(data.event_date?" — "+data.event_date:"");
     function done(sent){f.hidden=true;box.classList.add("on");box.querySelector("[data-summary]").textContent=lines.join("\n");
       var mail=box.querySelector("[data-mailto]"),ph=box.querySelector("[data-phone]");
-      if(mail){if(!sent&&to){mail.href="mailto:"+to+"?subject="+encodeURIComponent(subj)+"&body="+encodeURIComponent(lines.join("\n")+"\n\nSent from "+location.href);mail.hidden=false;mail.textContent="Email this request to "+to}else mail.hidden=true}
+      if(mail){if(!sent&&to){mail.href="mailto:"+to+"?cc="+encodeURIComponent(cc)+"&subject="+encodeURIComponent(subj)+"&body="+encodeURIComponent(lines.join("\n")+"\n\nSent from "+location.href);mail.hidden=false;mail.textContent="Email this request to Renegade Burrito"}else mail.hidden=true}
       var phone=loc&&(loc.cateringPhone||loc.phone);if(ph&&phone){ph.href="tel:"+phone.replace(/\D/g,"");ph.textContent="Call "+(loc.name)+" "+phone;ph.hidden=false}
       var st=box.querySelector("[data-status]");if(st)st.textContent=sent?"Your request was sent to the Renegade Burrito team.":"Almost done: tap “Email this request” below to send it (your email app opens with everything filled in), or call the restaurant.";
       box.focus()}
     var ep=CFG.brand.formEndpoint;
-    if(ep){fetch(ep,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(Object.assign({to:to},data))}).then(function(r){done(r.ok)}).catch(function(){done(false)})}else done(false);
+    if(ep){var payload=Object.assign({},data);if(loc)payload.location=loc.name;
+      payload._subject=subj;payload._cc=cc;payload._template="table";payload._captcha="false";if(data.email)payload._replyto=data.email;
+      var btn=f.querySelector("[type=submit]");if(btn){btn.disabled=true;btn.setAttribute("aria-busy","true")}
+      fetch(ep,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(payload)})
+        .then(function(r){return r.json().catch(function(){return {}}).then(function(j){return r.ok&&String(j.success)==="true"})})
+        .then(function(ok){if(btn){btn.disabled=false;btn.removeAttribute("aria-busy")}done(ok)})
+        .catch(function(){if(btn){btn.disabled=false;btn.removeAttribute("aria-busy")}done(false)})}else done(false);
   });
 });
 /* ---------- catering estimate calculator ---------- */

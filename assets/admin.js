@@ -46,11 +46,11 @@ function readLocs(){
   });
   return bad;
 }
-var PF=[["id","ID"],["title","Title"],["description","Description"],["type","Type"],["locations","Location IDs (comma separated)"],["start","Start (YYYY-MM-DD)"],["end","End (YYYY-MM-DD)"],["endLabel","End label"],["terms","Terms"],["ctaKind","Button type (order, item, rewards, gift)"],["item","Toast item key (for item buttons)"],["ctaLabel","Button label"],["code","Coupon code (only if honored in Toast)"]];
+var PF=[["id","ID"],["title","Title"],["description","Description"],["type","Type"],["locations","Location IDs (comma separated)"],["start","Start (YYYY-MM-DD)"],["end","End (YYYY-MM-DD)"],["endLabel","End label"],["publicTerms","Customer-facing terms (shown on the site)"],["terms","Internal note (staff only, never shown)"],["ctaKind","Button type (order, item, rewards, gift)"],["item","Toast item key (for item buttons)"],["ctaLabel","Button label"],["code","Coupon code (only if honored in Toast)"]];
 function renderPromos(){
   $("ad-promos").innerHTML=promos.promotions.map(function(pr,i){var p="p"+i+"-";
     return '<details class="card" style="padding:16px;margin-bottom:10px"><summary style="cursor:pointer;font-weight:700">'+esc(pr.title||"New promotion")+(pr.active&&pr.verified?"":' <span class="small muted">(hidden)</span>')+'</summary><div class="form" style="margin-top:12px">'+
-      PF.map(function(f){var v=f[0]==="locations"?(pr.locations||[]).join(","):pr[f[0]];return '<div class="field'+(f[0]==="description"||f[0]==="terms"?" full":"")+'"><label for="'+p+f[0]+'">'+f[1]+'</label><input id="'+p+f[0]+'" value="'+esc(v)+'"></div>'}).join("")+
+      PF.map(function(f){var v=f[0]==="locations"?(pr.locations||[]).join(","):pr[f[0]];return '<div class="field'+(f[0]==="description"||f[0]==="terms"||f[0]==="publicTerms"?" full":"")+'"><label for="'+p+f[0]+'">'+f[1]+'</label><input id="'+p+f[0]+'" value="'+esc(v)+'"></div>'}).join("")+
       '<div class="field full">'+chk(p+"active","Active",pr.active)+chk(p+"verified","Verified: Toast/POS can honor this offer",pr.verified)+chk(p+"cv","Coupon code verified in Toast",pr.codeVerifiedInToast)+'<button type="button" class="btn btn-sm btn-ghost" data-del="'+i+'">Delete</button></div></div></details>'}).join("");
   $("ad-promos").querySelectorAll("[data-del]").forEach(function(b){b.addEventListener("click",function(){readPromos();promos.promotions.splice(+b.getAttribute("data-del"),1);renderPromos()})});
 }
