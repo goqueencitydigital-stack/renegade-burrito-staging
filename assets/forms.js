@@ -41,11 +41,15 @@ document.querySelectorAll("form[data-lead]").forEach(function(f){
     var ep=CFG.brand.formEndpoint;
     if(ep){var payload=Object.assign({},data);if(loc)payload.location=loc.name;
       payload._subject=subj;payload._cc=cc;payload._template="table";payload._captcha="false";if(data.email)payload._replyto=data.email;
-      var btn=f.querySelector("[type=submit]");if(btn){btn.disabled=true;btn.setAttribute("aria-busy","true")}
-      fetch(ep,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(payload)})
+      var btn=f.querySelector("[type=submit]"),lbl=btn?btn.textContent:"",fin=false;
+      if(btn){btn.disabled=true;btn.setAttribute("aria-busy","true");btn.textContent="Sending…"}
+      var live=f.querySelector("[data-sending]");if(!live){live=document.createElement("p");live.setAttribute("data-sending","");live.setAttribute("role","status");live.className="sending-note";btn&&btn.insertAdjacentElement("afterend",live)}
+      live.textContent="Sending your request…";
+      function finish(ok){if(fin)return;fin=true;clearTimeout(tm);if(btn){btn.disabled=false;btn.removeAttribute("aria-busy");btn.textContent=lbl}live.textContent="";done(ok)}
+      var ac=window.AbortController?new AbortController():null,tm=setTimeout(function(){ac&&ac.abort();finish(false)},10000);
+      fetch(ep,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(payload),signal:ac?ac.signal:undefined})
         .then(function(r){return r.json().catch(function(){return {}}).then(function(j){return r.ok&&String(j.success)==="true"})})
-        .then(function(ok){if(btn){btn.disabled=false;btn.removeAttribute("aria-busy")}done(ok)})
-        .catch(function(){if(btn){btn.disabled=false;btn.removeAttribute("aria-busy")}done(false)})}else done(false);
+        .then(finish).catch(function(){finish(false)})}else done(false);
   });
 });
 /* ---------- catering estimate calculator ---------- */

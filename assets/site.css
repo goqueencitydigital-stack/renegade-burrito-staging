@@ -496,3 +496,6 @@ main>.sec+.sec::before{content:"";position:absolute;left:0;right:0;top:-13px;hei
 .chooser select{min-width:0;max-width:100%;width:100%}
 .rail>.quote{padding-top:22px}.rail>.quote::before{content:none}
 .rail>.quote p{position:relative}.rail>.quote{border-top:4px solid var(--green)}
+
+.sending-note{margin:.6rem 0 0;font-weight:600;color:inherit}.sending-note:empty{display:none}
+button[aria-busy=true]{cursor:progress;opacity:.85}
