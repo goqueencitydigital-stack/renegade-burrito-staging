@@ -3,7 +3,7 @@
    Display: Eveleth (licensed, production) -> Rubik Dirt fallback; Body: Futura -> Jost */
 :root{
   --ink:#0d0d0c; --ink-2:#161614; --ink-3:#22221f; --line-d:#2e2e2a;
-  --green:#43b02a; --green-d:#2c6a22; --green-ink:#1f4d18; --orange:#ff5e00; --kraft:#d8bf94; --kraft-l:#efe3cc;
+  --green:#43b02a; --logo-green:#7fbe41; --green-d:#2c6a22; --green-ink:#1f4d18; --orange:#ff5e00; --kraft:#d8bf94; --kraft-l:#efe3cc;
   --cream:#f2e4d5; --cream-2:#f8f0e6; --paper:#efe3cc; --line-l:#c9b088;
   --muted-d:#b9b3a8; --muted-l:#4a443b; --red:#a8361f; --amber:#e3a63a;
   --display:"Eveleth","Rubik Dirt","Impact",system-ui,sans-serif;
@@ -369,7 +369,7 @@ table.data th,table.data td{overflow-wrap:anywhere}
 .hero::after{background:linear-gradient(90deg,rgba(13,13,12,.86) 0px,rgba(13,13,12,.8) max(44%,660px),rgba(13,13,12,.6) max(58%,860px),rgba(13,13,12,.12) max(75%,1040px),rgba(13,13,12,0) max(86%,1180px))}
 .hero h1,.hero .lead,.hero .eyebrow{text-shadow:0 2px 14px rgba(0,0,0,.55)}
 @media (max-width:760px){.hero::after{background:linear-gradient(180deg,rgba(13,13,12,.56) 0%,rgba(13,13,12,.72) 50%,rgba(13,13,12,.8) 100%)}}
-.hero .eyebrow{color:#c8f0b8}
+.hero .eyebrow{color:var(--logo-green)}
 .hero .lead{color:#f6eee4}
 .hero .crumbs,.hero .crumbs a{color:#f6eee4;text-shadow:0 1px 8px rgba(0,0,0,.7)}
 @media (max-width:760px){.hero::after{background:linear-gradient(180deg,rgba(13,13,12,.72) 0%,rgba(13,13,12,.64) 30%,rgba(13,13,12,.72) 60%,rgba(13,13,12,.8) 100%)}}
