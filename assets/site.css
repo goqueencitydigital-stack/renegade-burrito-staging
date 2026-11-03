@@ -501,3 +501,10 @@ main>.sec+.sec::before{content:"";position:absolute;left:0;right:0;top:-13px;hei
 button[aria-busy=true]{cursor:progress;opacity:.85}
 
 .offmenu{display:none!important}
+/* press */
+.press-card{display:flex;flex-direction:column}
+.press-logo{background:#f2e4d5;display:flex;align-items:center;justify-content:center;height:150px;padding:20px}
+.press-logo img{max-height:110px;max-width:70%;width:auto;height:auto;object-fit:contain}
+.press-card .bd{display:flex;flex-direction:column;flex:1}
+.press-card .bd .mb0{margin-top:auto}
+.press-h{font-size:1.2rem;margin:0 0 .5em}
