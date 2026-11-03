@@ -77,16 +77,18 @@ function paint(){
     var u=resolve(kind,loc,item);
     if(u){a.setAttribute("href",withUtm(u,a.getAttribute("data-placement")||kind));a.removeAttribute("aria-disabled");a.setAttribute("rel","noopener");
       if(a.hasAttribute("data-unavail-label")&&a.dataset.origLabel){a.textContent=a.dataset.origLabel}}
+    else if(kind==="item"&&(u=resolve("pickup",loc,null))){a.setAttribute("href",withUtm(u,a.getAttribute("data-placement")||kind));a.removeAttribute("aria-disabled");a.setAttribute("rel","noopener");if(a.dataset.origLabel)a.textContent=a.dataset.origLabel}
     else{a.setAttribute("href",BASE+(window.RB_ORDER_PATH||"/order/"));
       if(kind==="item"||kind==="delivery"||kind==="gift"||kind==="rewards"){a.setAttribute("aria-disabled","true");if(a.hasAttribute("data-unavail-label")){a.dataset.origLabel=a.dataset.origLabel||a.textContent;a.textContent=a.getAttribute("data-unavail-label")}}}
   });
   // menu availability + prices
   document.querySelectorAll("[data-menu-item]").forEach(function(c){
     var it=ITEMS[c.getAttribute("data-menu-item")],pr=c.querySelector("[data-price]"),av=c.querySelector("[data-avail]");if(!it)return;
-    if(!cur){c.classList.remove("unavail");if(pr)pr.textContent=pr.getAttribute("data-default");if(av)av.textContent="";return}
-    var x=it.l[cur.id];c.classList.toggle("unavail",!x);
+    if(!cur){c.classList.remove("unavail");c.classList.remove("offmenu");if(pr)pr.textContent=pr.getAttribute("data-default");if(av)av.textContent="";return}
+    var x=it.l[cur.id];c.classList.remove("unavail");
+    if(!c.classList.contains("locbanner"))c.classList.toggle("offmenu",!x); // simply not on that store's menu
     if(pr)pr.textContent=x?(x[1]||""):"";
-    if(av)av.textContent=x?"":"Not on the "+cur.name+" menu";
+    if(av)av.textContent="";
   });
   // catering call buttons: use the chosen store's catering line (Westminster has its own); default is the main catering line
   document.querySelectorAll("a[data-cater-call]").forEach(function(a){var lid=a.getAttribute("data-loc"),l=lid?byId[lid]:cur;var ph=(l&&(l.cateringPhone||l.phone))||CFG.brand.cateringPhone;if(!a.dataset.origLabel)a.dataset.origLabel=a.textContent;a.setAttribute("href","tel:+1"+ph.replace(/\D/g,""));if(/^Call to order/.test(a.dataset.origLabel))a.textContent="Call to order "+ph});
@@ -106,13 +108,24 @@ function buildModal(){
   document.body.appendChild(modal);
   modal.addEventListener("click",function(e){if(e.target===modal||e.target.closest(".xbtn"))closeModal()});
   modal.addEventListener("keydown",function(e){if(e.key==="Escape")closeModal()});
-  modal.querySelector("#locm-q").addEventListener("input",function(){renderList(this.value)});
+  modal.querySelector("#locm-q").addEventListener("input",function(){var v=this.value.trim(),m=modal.querySelector("[data-geo-msg]");
+    if(/^\d{5}$/.test(v)){zipSort(v,m,function(){renderList(v)})}else{if(/^\d{0,4}$/.test(v)&&v){m.textContent="Keep typing your 5-digit ZIP…"}else if(!v){m.textContent="";LOCS.forEach(function(l){delete dist[l.id]})}renderList(v)}});
   modal.querySelector("[data-geo]").addEventListener("click",function(){geoSort(modal.querySelector("[data-geo-msg]"),function(){renderList(modal.querySelector("#locm-q").value)})});
   renderList("");
 }
 var dist={};
+/* ZIP search: US Census 2024 ZCTA centroids for Colorado, loaded only when a 5-digit ZIP is typed */
+var ZIPS=null,zipReq=null;
+function zipLookup(z,cb){if(ZIPS){cb(ZIPS[z]||null);return}
+  if(!zipReq)zipReq=fetch(BASE+"/data/co_zips.json").then(function(r){return r.json()}).then(function(j){ZIPS=j;return j}).catch(function(){ZIPS={};return ZIPS});
+  zipReq.then(function(){cb(ZIPS[z]||null)})}
+function zipSort(z,msg,cb){zipLookup(z,function(ll){
+  if(!ll){msg.textContent="We couldn't find ZIP "+z+" in Colorado. Here are all six locations.";LOCS.forEach(function(l){delete dist[l.id]});cb&&cb();return}
+  LOCS.forEach(function(l){dist[l.id]=hav(ll[0],ll[1],l.lat,l.lng)});msg.textContent="Closest to "+z+" first (straight-line miles).";cb&&cb()})}
+window.RBzipSort=zipSort;
 function renderList(q){
   q=(q||"").toLowerCase().trim();var box=modal.querySelector(".loclist"),cur=getLoc();box.innerHTML="";
+  if(/^\d{1,5}$/.test(q))q=""; // ZIPs sort by distance instead of filtering
   LOCS.slice().sort(function(a,b){return (dist[a.id]||0)-(dist[b.id]||0)}).forEach(function(l){
     var hay=(l.name+" "+l.city+" "+l.zip+" "+l.address+" "+(l.searchTerms||"")).toLowerCase();if(q&&hay.indexOf(q)<0)return;
     var b=document.createElement("button");b.type="button";b.className="locopt";b.setAttribute("role","listitem");b.setAttribute("aria-pressed",cur&&cur.id===l.id?"true":"false");
@@ -124,7 +137,7 @@ function renderList(q){
 function geoSort(msg,cb){
   if(!navigator.geolocation){msg.textContent="Location is not available in this browser.";return}
   msg.textContent="Finding the closest Renegade…";
-  navigator.geolocation.getCurrentPosition(function(p){LOCS.forEach(function(l){dist[l.id]=hav(p.coords.latitude,p.coords.longitude,l.lat,l.lng)});msg.textContent="Sorted by distance (straight-line).";cb&&cb()},function(){msg.textContent="We couldn't get your location. Search by city instead."},{timeout:8000,maximumAge:600000});
+  navigator.geolocation.getCurrentPosition(function(p){LOCS.forEach(function(l){dist[l.id]=hav(p.coords.latitude,p.coords.longitude,l.lat,l.lng)});msg.textContent="Sorted by distance (straight-line).";cb&&cb()},function(){msg.textContent="Your browser or device didn't share a location. Type your ZIP code or city instead."},{timeout:8000,maximumAge:600000});
 }
 window.RBgeoSort=geoSort;window.RBdist=dist;
 function hav(a,b,c,d){var R=3958.8,r=Math.PI/180,x=Math.sin((c-a)*r/2),y=Math.sin((d-b)*r/2);var h=x*x+Math.cos(a*r)*Math.cos(c*r)*y*y;return 2*R*Math.asin(Math.sqrt(h))}
@@ -180,7 +193,10 @@ document.querySelectorAll("form[data-chooser]").forEach(function(f){
 // location finder page
 var finder=document.querySelector("[data-finder]");
 if(finder){var fq=finder.querySelector("input[type=search]"),cards=document.querySelectorAll("[data-loc-card]"),fm=finder.querySelector("[data-geo-msg]");
-  function filt(){var q=(fq.value||"").toLowerCase().trim(),n=0;cards.forEach(function(c){var ok=!q||c.getAttribute("data-search").indexOf(q)>=0;c.hidden=!ok;if(ok)n++});finder.querySelector("[data-count]").textContent=n+" of "+cards.length+" locations"}
+  function sortCards(){var g=document.querySelector("[data-loc-grid]");Array.prototype.slice.call(cards).sort(function(a,b){var x=dist[a.getAttribute("data-loc-card")],y=dist[b.getAttribute("data-loc-card")];return (x==null?1e9:x)-(y==null?1e9:y)}).forEach(function(c){g.appendChild(c);var s=c.querySelector("[data-dist]");var d=dist[c.getAttribute("data-loc-card")];if(s)s.textContent=d!=null?d.toFixed(1)+" mi away":""})}
+  function filt(){var q=(fq.value||"").toLowerCase().trim(),n=0;
+    if(/^\d{5}$/.test(q)){zipSort(q,fm,function(){sortCards();cards.forEach(function(c){c.hidden=false});finder.querySelector("[data-count]").textContent=cards.length+" of "+cards.length+" locations"});return}
+    if(/^\d{1,4}$/.test(q))q="";cards.forEach(function(c){var ok=!q||c.getAttribute("data-search").indexOf(q)>=0;c.hidden=!ok;if(ok)n++});finder.querySelector("[data-count]").textContent=n+" of "+cards.length+" locations"}
   fq.addEventListener("input",filt);
   finder.querySelector("[data-geo]").addEventListener("click",function(){geoSort(fm,function(){var g=document.querySelector("[data-loc-grid]");Array.prototype.slice.call(cards).sort(function(a,b){return dist[a.getAttribute("data-loc-card")]-dist[b.getAttribute("data-loc-card")]}).forEach(function(c){g.appendChild(c);var s=c.querySelector("[data-dist]");if(s)s.textContent=dist[c.getAttribute("data-loc-card")].toFixed(1)+" mi away"})})});
 }
