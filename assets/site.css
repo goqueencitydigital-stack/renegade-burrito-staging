@@ -538,3 +538,18 @@ button[aria-busy=true]{cursor:progress;opacity:.85}
 .awp-card strong{font-size:1.02rem;line-height:1.25}
 .awp-card span{font-size:var(--t-xs,.85rem);color:#5b4a35}
 .awp-src{font-size:var(--t-xs,.85rem);display:inline-flex;align-items:center;min-height:28px}
+
+/* Order page: order-direct perks bar */
+.perks-bar{background:#0d0d0c;color:#f2e4d5;padding:28px 0 30px;border-bottom:4px solid var(--logo-green,#7fbe41)}
+.perks-bar .pk-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.perks-bar h2{margin:0;color:var(--logo-green,#7fbe41);font-size:clamp(1.5rem,2.6vw,2rem)}
+.perks-bar .pk-more{color:#f2e4d5;font-weight:700;text-underline-offset:3px}
+.perks-bar .pk-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.perks-bar li{display:flex;gap:12px;align-items:flex-start;margin:0}
+.perks-bar .pk-ico{flex:0 0 44px;width:44px;height:44px;border-radius:50%;background:#1c1c1a;color:var(--logo-green,#7fbe41);display:flex;align-items:center;justify-content:center}
+.perks-bar li b{display:block;font-size:1.05rem;line-height:1.25;color:#fff}
+.perks-bar li b + span{display:block;font-size:.95rem;line-height:1.4;color:#e3d6c6;margin-top:2px}
+.perks-bar li a{color:#f2e4d5;text-decoration:underline;text-underline-offset:2px}
+.perks-bar a:focus-visible{outline:3px solid var(--logo-green,#7fbe41);outline-offset:3px;border-radius:4px}
+@media (max-width:960px){.perks-bar .pk-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.perks-bar{padding:22px 0}.perks-bar .pk-list{grid-template-columns:1fr;gap:14px}}
