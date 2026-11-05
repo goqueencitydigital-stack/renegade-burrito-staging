@@ -50,8 +50,10 @@ function resolve(kind,loc,item){
 }
 window.RBresolve=resolve;
 /* ---------- location state ---------- */
-function getLoc(){try{return byId[sessionStorage.getItem(LOC_KEY)]||null}catch(e){return null}}
-function setLoc(id,how){if(!byId[id])return;try{sessionStorage.setItem(LOC_KEY,id)}catch(e){}track("location_selected",{location_id:id,location_name:byId[id].name,method:how||"selector"});paint();document.dispatchEvent(new CustomEvent("rb:loc",{detail:byId[id]}))}
+function readLoc(){var v=null;try{v=localStorage.getItem(LOC_KEY)}catch(e){}if(!v)try{v=sessionStorage.getItem(LOC_KEY)}catch(e){}return v}
+function saveLoc(id){try{localStorage.setItem(LOC_KEY,id)}catch(e){}try{sessionStorage.setItem(LOC_KEY,id)}catch(e){}}
+function getLoc(){return byId[readLoc()]||null}
+function setLoc(id,how){if(!byId[id])return;saveLoc(id);track("location_selected",{location_id:id,location_name:byId[id].name,method:how||"selector"});paint();document.dispatchEvent(new CustomEvent("rb:loc",{detail:byId[id]}))}
 window.RBsetLoc=setLoc;window.RBgetLoc=getLoc;
 
 /* ---------- hours / open now (only when verified) ---------- */
@@ -70,6 +72,7 @@ window.RBopen=openState;
 /* ---------- paint: rewrite every button from config ---------- */
 function paint(){
   var cur=getLoc();
+  document.querySelectorAll("form[data-chooser] select").forEach(function(s){if(cur&&s.querySelector('option[value="'+cur.id+'"]')&&s.value!==cur.id){s.value=cur.id;s.removeAttribute("aria-invalid")}});
   document.querySelectorAll("[data-loc-label]").forEach(function(el){el.textContent=cur?cur.name:(el.getAttribute("data-empty")||"Choose location")});
   document.querySelectorAll("[data-order]").forEach(function(a){
     var kind=a.getAttribute("data-order"),lid=a.getAttribute("data-loc"),loc=lid?byId[lid]:cur,item=a.getAttribute("data-item");
@@ -170,7 +173,7 @@ document.addEventListener("click",function(e){
   var a=e.target.closest("[data-order]");
   if(a){if(e.metaKey||e.ctrlKey||e.shiftKey||e.button===1){var l0=a.getAttribute("data-loc")?byId[a.getAttribute("data-loc")]:getLoc();if(l0)return;}
     e.preventDefault();var kind=a.getAttribute("data-order"),lid=a.getAttribute("data-loc"),loc=lid?byId[lid]:getLoc(),item=a.getAttribute("data-item"),pl=a.getAttribute("data-placement");
-    if(lid&&!getLoc())try{sessionStorage.setItem(LOC_KEY,lid)}catch(x){}
+    if(lid&&!getLoc())saveLoc(lid);
     if(!loc){pending={kind:kind,item:item,placement:pl,el:a};openModal(null);return}
     go(kind,loc,item,pl,a);return}
   var c=e.target.closest("[data-choose-loc]");if(c){e.preventDefault();openModal();return}
@@ -190,6 +193,9 @@ document.querySelectorAll("form[data-chooser]").forEach(function(f){
   f.addEventListener("submit",function(e){e.preventDefault();if(!s.value){s.focus();s.setAttribute("aria-invalid","true");return}
     setLoc(s.value,"chooser");go(f.getAttribute("data-kind")||"order",byId[s.value],null,f.getAttribute("data-placement")||"chooser")})
 });
+// keep every picker in sync: back/forward cache restores and other open tabs
+window.addEventListener("pageshow",function(){paint()});
+window.addEventListener("storage",function(e){if(e.key===LOC_KEY)paint()});
 // location finder page
 var finder=document.querySelector("[data-finder]");
 if(finder){var fq=finder.querySelector("input[type=search]"),cards=document.querySelectorAll("[data-loc-card]"),fm=finder.querySelector("[data-geo-msg]");
