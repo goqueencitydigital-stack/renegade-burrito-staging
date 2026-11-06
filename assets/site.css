@@ -75,7 +75,7 @@ p{margin:0 0 1em} ul{padding-left:1.2em}
 .dd.open .dd-menu.mega{display:grid}
 .dd-menu.mega-wide{grid-template-columns:repeat(4,minmax(0,1fr))}
 .mcol{min-width:0}
-.dd-menu .mh{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--gold,#e8b04a);font-weight:700;margin:6px 12px 6px}
+.dd-menu .mh{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.08em;color:#7fbe41;font-weight:700;margin:6px 12px 6px}
 .dd-menu.mega a{padding:7px 12px}
 .mnav details.macc{border-bottom:1px solid var(--line-d);padding:0}
 .mnav details.macc[open]{padding-bottom:10px}
