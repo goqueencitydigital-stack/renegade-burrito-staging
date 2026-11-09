@@ -563,3 +563,49 @@ button[aria-busy=true]{cursor:progress;opacity:.85}
 .bfast-grid .menu-card .foot .tag-allday{margin-right:0;justify-self:end}
 .bfast-grid .menu-card .foot .btn{grid-column:1/-1;width:100%;justify-content:center;background:var(--green);color:var(--ink)}
 .bfast-grid .menu-card .foot .btn:hover{background:#56c23c}
+
+/* ---- Desktop navigation: bolder, hover-open mega menus ---- */
+@media (min-width:1061px){
+  .hdr .wrap{min-height:84px;gap:18px}
+  .logo img{height:60px}
+  .nav{align-self:stretch;gap:2px;margin-left:14px}
+  .nav .dd{display:flex;align-items:stretch}
+  .nav>div>button{position:relative;font-weight:800;font-size:.95rem;letter-spacing:.07em;text-transform:uppercase;padding:0 16px;border-radius:0;color:var(--cream);gap:6px}
+  .nav>div>button span{font-size:.7em;color:#7fbe41;transition:transform .15s ease}
+  .nav>div>button::after{content:"";position:absolute;left:16px;right:16px;bottom:0;height:4px;border-radius:4px 4px 0 0;background:#7fbe41;transform:scaleX(0);transition:transform .15s ease}
+  .nav>div>button:hover,.nav .dd.open>button,.nav a[aria-current=page],.nav>div>button[aria-current=page]{background:none;color:#fff}
+  .nav>div>button:hover::after,.nav .dd.open>button::after,.nav>div>button[aria-current=page]::after,.nav .dd:hover>button::after{transform:scaleX(1)}
+  .nav .dd.open>button span,.nav .dd:hover>button span{transform:rotate(180deg)}
+  .nav>div>button:focus-visible{outline:3px solid #7fbe41;outline-offset:-3px}
+  .dd-menu.mega{top:100%;border-radius:0 0 18px 18px;border-top:4px solid #7fbe41;padding:28px 30px 26px;gap:10px 30px;background:#151514}
+  .dd-menu .mh{font-size:.8rem;letter-spacing:.12em;font-weight:800;margin:4px 12px 10px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.12)}
+  .dd-menu.mega a{font-size:1rem;font-weight:600;padding:8px 12px;border-left:3px solid transparent;border-radius:0 8px 8px 0;transition:background .12s ease,border-color .12s ease,color .12s ease}
+  .dd-menu.mega a:hover,.dd-menu.mega a:focus-visible{background:rgba(127,190,65,.12);border-left-color:#7fbe41;color:#fff}
+  .hdr-cta .btn{min-height:46px;font-size:.85rem;font-weight:800;padding-left:22px;padding-right:22px}
+  .locpill{min-height:46px;font-size:.82rem;font-weight:700;padding:8px 16px}
+}
+@media (min-width:1061px) and (hover:hover){
+  .nav .dd:hover .dd-menu.mega{display:grid}
+  .nav:hover .dd.open:not(:hover) .dd-menu{display:none}
+  .nav:hover .dd.open:not(:hover)>button::after{transform:scaleX(0)}
+}
+.mfeat{display:none}
+@media (min-width:1061px){
+  .dd-menu.mega.has-feat{grid-template-columns:repeat(3,minmax(0,1fr)) minmax(300px,1.3fr)}
+  .mfeat{display:flex;flex-direction:column;background:#0d0d0c;border:1px solid rgba(255,255,255,.12);border-radius:16px;overflow:hidden;align-self:start}
+  .mfeat img{width:100%;height:170px;object-fit:cover;display:block}
+  .mfeat-bd{padding:16px 18px 18px}
+  .dd-menu.mega .mfeat-t{font-family:var(--display);text-transform:uppercase;font-size:1.25rem;line-height:1.1;color:var(--cream);margin:0 0 6px}
+  .dd-menu.mega .mfeat-x{font-size:.9rem;color:rgba(242,228,213,.82);margin:0 0 14px;line-height:1.45}
+  .dd-menu.mega .mfeat .btn{display:inline-flex;border-left:0;padding:.5em 1.2em;border-radius:999px;color:#0d0d0c;font-weight:800;font-size:.8rem}
+  .dd-menu.mega .mfeat .btn:hover{background:#56c23c;color:#0d0d0c}
+}
+@media (min-width:1061px) and (max-width:1280px){
+  .nav{margin-left:4px}
+  .nav>div>button{padding:0 10px;font-size:.84rem;letter-spacing:.05em}
+  .nav>div>button::after{left:10px;right:10px}
+  .logo img{height:52px}
+  .hdr-cta .btn{padding-left:16px;padding-right:16px;font-size:.78rem}
+  .dd-menu.mega.has-feat{grid-template-columns:repeat(3,minmax(0,1fr)) minmax(240px,1.1fr)}
+}
+@media (min-width:1061px) and (max-width:1240px){ .hdr-cta .locpill{display:none} }
