@@ -61,7 +61,7 @@
    "format": "Dine-in, patio, pickup & delivery",
    "dineIn": true,
    "features": [
-    "Heated patio (seats up to 40 for private events)",
+    "Covered, heated patio (seats up to 40 for private events)",
     "Happy Hour 2–5 pm daily (Arvada only)",
     "Margaritas and beer"
    ],
@@ -138,7 +138,8 @@
    "format": "Pickup & delivery only (ghost kitchen)",
    "dineIn": false,
    "features": [
-    "Pickup and delivery only — no dining room"
+    "Pickup and delivery only — no dining room",
+    "Outdoor seating"
    ],
    "nearby": "Near the University of Denver, Washington Park and the Cherry Creek Shopping District.",
    "photo": "/img/locations/du.webp",
@@ -210,7 +211,8 @@
    "format": "Carry-out & delivery",
    "dineIn": false,
    "features": [
-    "Taco Tuesday items on the online menu"
+    "Taco Tuesday items on the online menu",
+    "Outdoor seating"
    ],
    "nearby": "In Denver's Park Hill neighborhood on E 39th Ave.",
    "photo": "/img/locations/parkhill.webp",
@@ -278,10 +280,11 @@
    "phone": "(720) 255-2011",
    "lat": 39.718677,
    "lng": -105.131937,
-   "googlePlaceId": null,
+   "googlePlaceId": "ChIJ4f1x0DSDa4cRk7hN54OCJDU",
    "format": "Dine-in, pickup & delivery",
    "dineIn": true,
    "features": [
+    "Covered patio",
     "Newest location"
    ],
    "nearby": "On Union Blvd in Lakewood, near the Denver Federal Center and Belmar.",
@@ -426,7 +429,7 @@
    "format": "Dine-in, outdoor seating, pickup & delivery",
    "dineIn": true,
    "features": [
-    "Outdoor seating",
+    "Covered patio",
     "The original Renegade Burrito (est. 2017 in Westminster)"
    ],
    "nearby": "By Orchard Town Center, Topgolf Thornton and Denver Premium Outlets, at 136th and I-25.",
